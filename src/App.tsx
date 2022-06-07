@@ -10,8 +10,6 @@ const [deadline, setDeadline] = useState<number>(0);
 const [todoList, setTodoList] = useState<ITask[]>([]);
 
 const handleChange = ( event: ChangeEvent<HTMLInputElement>): void => {
-  if(event.target.value === "task...")
-    return;
   if(event.target.name === "task") {
     setTask(event.target.value)
   } else {
@@ -29,7 +27,7 @@ const addTask = (): void => {
 
 const completeTask = (taskNameToDelete: string): void => {
   setTodoList(todoList.filter((task) => {
-    return task.taskName != taskNameToDelete
+    return task.taskName !== taskNameToDelete
   }))  
 
 }
@@ -45,7 +43,7 @@ const completeTask = (taskNameToDelete: string): void => {
       </div>
       <div className="todoList">
         {todoList.map((task: ITask, key: number) => {
-          return <TodoTask  key={key} task={task}/>;
+          return <TodoTask  key={key} task={task} completeTask = {completeTask}/>;
         })}
       </div>
     </div>
